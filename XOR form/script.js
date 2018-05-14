@@ -1,25 +1,25 @@
-function getFormValues(event) {                 //сбор данных с формы
+function collectData(event) {                 //сбор данных с формы
     var formPassword = document.getElementsByName("password")[0];
-    var formMessage = document.getElementsByName("message")[0];
-    var resultArr = encryption(formPassword, formMessage);
+        var formMessage = document.getElementsByName("message")[0];
+        var resultArr = encryption(formPassword.value, formMessage.value);
     outputText(resultArr);
     event.preventDefault();
 }
 
-document.getElementById("btn").addEventListener("click", getFormValues);
+document.getElementById("btn").addEventListener("click", collectData);
 
-function encryption(formPassword, formMessage) {            //шифрование
+function encryption(password, message) {            //шифрование
     var key, result;
     var arr = [];
-    if (isNaN(formPassword.value) && formPassword.value.length === 1) {
-        key = formPassword.value.charCodeAt(0);
-    } else if (0 <= +formPassword.value && +formPassword.value <= 255) {
-        key = +formPassword.value;
+    if (isNaN(password) && password.length === 1) {
+        key = password.charCodeAt(0);
+    } else if (0 <= +password && +password <= 255) {
+        key = +password;
     } else {
         return "error";
     }
-    for (var i = 0; i <= formMessage.value.length - 1; i++) {
-        result = key ^ formMessage.value[i].charCodeAt(0);
+    for (var i = 0; i <= message.length - 1; i++) {
+        result = key ^ message[i].charCodeAt(0);
         arr.push(String.fromCharCode(result));
     }
     return arr;
