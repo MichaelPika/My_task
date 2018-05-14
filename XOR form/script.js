@@ -1,7 +1,7 @@
 function collectData(event) {                 //сбор данных с формы
     var formPassword = document.getElementsByName("password")[0];
-        var formMessage = document.getElementsByName("message")[0];
-        var resultArr = encryption(formPassword.value, formMessage.value);
+    var formMessage = document.getElementsByName("message")[0];
+    var resultArr = encryption(formPassword.value, formMessage.value);
     outputText(resultArr);
     event.preventDefault();
 }
